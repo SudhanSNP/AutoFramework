@@ -10,13 +10,13 @@ namespace Tests.UITests
     public class EPAMSearchPageTest
     {
         private IWebDriver driver;
-        private BaseDriver WebDriver;
+        private IDriver WebDriver;
 
         [SetUp]
         public void SetUp()
         {
-            WebDriver = new BaseDriver()
-                .SetDriver();
+            WebDriver = new DriverFactory(DriverType.Firefox)
+                .GetDriverType();
 
             driver = WebDriver.GetDriver();
             WebDriver.MaximizeDriver();

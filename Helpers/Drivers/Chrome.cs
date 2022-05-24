@@ -3,27 +3,13 @@ using OpenQA.Selenium.Chrome;
 
 namespace Helpers.Drivers
 {
-    public class BaseDriver : IDriver
+    public class Chrome : IDriver
     {
         private IWebDriver driver;
-        private static string Driver_Type = DriverType.Chrome.ToString();
 
-        public BaseDriver()
+        public Chrome()
         {
-        }
-
-        public BaseDriver SetDriver()
-        {
-            switch (Driver_Type)
-            {
-                case "Chrome":
-                    driver = new ChromeDriver();
-                    break;
-                case null:
-                    Console.WriteLine("Enter the valid browser");
-                    break;
-            }
-            return this;
+            this.driver = new ChromeDriver();
         }
 
         public IWebDriver GetDriver()

@@ -9,13 +9,13 @@ namespace Tests.UITests
     public class EPAMHomePageTest
     {
         private IWebDriver driver;
-        private BaseDriver WebDriver;
+        private IDriver WebDriver;
 
         [SetUp]
         public void SetUp()
         {
-            WebDriver = new BaseDriver()
-                .SetDriver();
+            WebDriver = new DriverFactory(DriverType.Chrome)
+                .GetDriverType();
 
             driver = WebDriver.GetDriver();
             WebDriver.MaximizeDriver();

@@ -1,28 +1,12 @@
-﻿using Helpers.Drivers;
-using NUnit.Framework;
-using OpenQA.Selenium;
+﻿using NUnit.Framework;
 using Pages;
 
 namespace Tests.UITests
 {
     [TestFixture]
-    public class EPAMHomePageTest
+    [Parallelizable(ParallelScope.Fixtures)]
+    public class EPAMHomePageTest : BaseTestFixtures
     {
-        private IWebDriver driver;
-        private IDriver WebDriver;
-
-        [SetUp]
-        public void SetUp()
-        {
-            WebDriver = new DriverFactory(DriverType.Chrome)
-                .GetDriverType();
-
-            driver = WebDriver.GetDriver();
-            WebDriver.MaximizeDriver();
-            WebDriver.NavigateURL("https://www.epam.com/");
-            BasePage.GetInstance.SetWebDriver(driver);
-        }
-
         [Test]
         public void HomePageTest()
         {
@@ -33,10 +17,5 @@ namespace Tests.UITests
             Assert.That(regions.Count == 3);
         }
 
-        [TearDown]
-        public void TearDown()
-        {
-            WebDriver.CloseDriver();
-        }
     }
 }

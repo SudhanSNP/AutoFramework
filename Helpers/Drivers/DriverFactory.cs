@@ -18,10 +18,10 @@ namespace Helpers.Drivers
             switch (driverType)
             {
                 case DriverType.Chrome:
-                    driver = new Chrome();
+                    driver = Chrome.GetDriverInstance;
                     break;
                 case DriverType.Firefox:
-                    driver = new Firefox();
+                    driver = Firefox.GetDriverInstance;
                     break;
                 default:
                     Console.WriteLine("Enter the valid browser");

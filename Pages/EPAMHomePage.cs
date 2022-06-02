@@ -25,12 +25,12 @@ namespace Pages
 
         public EPAMHomePage ClickSearch()
         {
-            _basePage.ClickElement(By.XPath("//button[contains(@class, 'header-search__button')]"));
+            _basePage.mouseAction.ClickElement(By.XPath("//button[contains(@class, 'header-search__button')]"));
             return this;
         }
         public EPAMHomePage AcceptCookies()
         {
-            _basePage.ClickElement(By.XPath("//button[text()='Accept All']"));
+            _basePage.mouseAction.ClickElement(By.XPath("//button[text()='Accept All']"));
             return this;
         }
 
@@ -42,13 +42,13 @@ namespace Pages
 
         public EPAMHomePage ClickLanguage()
         {
-            _basePage.ClickElement(By.XPath("//button[contains(@class, 'location-selector__button')]"));
+            _basePage.mouseAction.ClickElement(By.XPath("//button[contains(@class, 'location-selector__button')]"));
             return this;
         }
 
         public EPAMHomePage ClickRegion(string Region)
         {
-            _basePage.ClickElement(By.XPath($"//a[text()='{Region}']"));
+            _basePage.mouseAction.ClickElement(By.XPath($"//a[text()='{Region}']"));
             return this;
         }
 

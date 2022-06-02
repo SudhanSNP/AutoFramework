@@ -7,22 +7,11 @@ using Pages;
 namespace Tests.UITests
 {
     [TestFixture]
-    public class EPAMSearchPageTest
+    [Parallelizable(ParallelScope.Fixtures)]
+    public class EPAMSearchPageTest : BaseTestFixtures
     {
         private IWebDriver driver;
         private IDriver WebDriver;
-
-        [SetUp]
-        public void SetUp()
-        {
-            WebDriver = new DriverFactory(DriverType.Firefox)
-                .GetDriverType();
-
-            driver = WebDriver.GetDriver();
-            WebDriver.MaximizeDriver();
-            WebDriver.NavigateURL("https://www.epam.com/");
-            BasePage.GetInstance.SetWebDriver(driver);
-        }
 
         [Test]
         public void SearchResultTest()
@@ -37,12 +26,6 @@ namespace Tests.UITests
 
             Assert.That(resultCount, Is.EqualTo("385 RESULTS FOR " + '"' + "AUTOMATION" + '"'));
             Assert.That(Int32.Parse(resultCount.Split(' ')[0]), Is.EqualTo(385));
-        }
-
-        [TearDown]
-        public void TearDown()
-        {
-            WebDriver.CloseDriver();
         }
     }
 }

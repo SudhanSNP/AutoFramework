@@ -1,11 +1,12 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using Helpers.Logging;
 
 namespace Helpers.Actions
 {
     public class DriverActions
     {
-        public IWebDriver driver { get; set; }
+        public static IWebDriver driver { get; set; }
 
         public DriverActions()
         {
@@ -13,14 +14,7 @@ namespace Helpers.Actions
 
         public virtual void SetWebDriver(IWebDriver _driver)
         {
-            this.driver = _driver;
-        }
-
-        public void ClickElement(By selector)
-        {
-            WaitUntilElementDisplayed(selector);
-            MoveToElement(selector);
-            driver.FindElement(selector).Click();
+            driver = _driver;
         }
 
         public string GetText(By selector)
@@ -35,7 +29,9 @@ namespace Helpers.Actions
 
         public virtual bool GetPresenceOfElement(By selector)
         {
-            return driver.FindElement(selector).Displayed;
+            bool result = driver.FindElement(selector).Displayed;
+            Logger.PrintLog(new InfoLogger().LogMessage($"Element '{selector}' is present"));
+            return result;
         }
 
         public void GetText(By selector, out List<string> list)
@@ -52,32 +48,20 @@ namespace Helpers.Actions
                 .Select(e => e.GetAttribute(attribute)).ToList();
         }
 
-        public void SendText(By selector, string text)
-        {
-            WaitUntilElementDisplayed(selector).SendKeys(text);
-        }
-
-        public void ClearText(By selector)
-        {
-            WaitUntilElementDisplayed(selector).Clear();
-        }
-
         protected virtual IWebElement WaitUntilElementDisplayed(By selector)
         {
-            return new WebDriverWait(driver, new TimeSpan(0, 0, 5))
+            IWebElement element = new WebDriverWait(driver, new TimeSpan(0, 0, 5))
                 .Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(selector));
+            Logger.PrintLog(new InfoLogger().LogMessage($"Element '{selector}' displayed"));
+            return element;
         }
 
-        protected void MoveToElement(By selector)
+        protected virtual IWebElement WaitUntilElementClickable(By selector)
         {
-            OpenQA.Selenium.Interactions.Actions actions = new OpenQA.Selenium.Interactions.Actions(driver);
-            actions.MoveToElement(driver.FindElement(selector));
-            actions.Perform();
-        }
-
-        public void SwitchTab()
-        {
-            driver.FindElement(By.CssSelector("body")).SendKeys(Keys.Control + Keys.Tab);
+            IWebElement element = new WebDriverWait(driver, new TimeSpan(0, 0, 5))
+                .Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(selector));
+            Logger.PrintLog(new InfoLogger().LogMessage($"Element '{selector}' displayed"));
+            return element;
         }
     }
 }

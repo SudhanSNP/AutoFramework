@@ -5,6 +5,8 @@ namespace Pages
 {
     public sealed class BasePage : DriverActions
     {
+        public KeyBoardActions keysAction = new KeyBoardActions();
+        public MouseActions mouseAction = new MouseActions();
         private static Lazy<BasePage> _basePage = new Lazy<BasePage>(() => new BasePage());
         public static BasePage GetInstance
         {

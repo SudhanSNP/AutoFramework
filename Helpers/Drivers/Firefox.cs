@@ -3,9 +3,16 @@ using OpenQA.Selenium.Firefox;
 
 namespace Helpers.Drivers
 {
-    public class Firefox : IDriver
+    public sealed class Firefox : IDriver
     {
         private IWebDriver driver;
+
+        private static Lazy<Firefox> DriverInstance = new Lazy<Firefox>(()=> new Firefox());
+
+        public static Firefox GetDriverInstance
+        {
+            get { return Firefox.DriverInstance.Value; }
+        }
 
         public Firefox()
         {

@@ -23,19 +23,19 @@ namespace Pages
 
         public EPAMSearchPage EnterSearchText(string search)
         {
-            _basePage.SendText(By.Id("new_form_search"), search);
+            _basePage.keysAction.SendText(By.Id("new_form_search"), search);
             return this;
         }
 
         public EPAMHomePage GoToHome()
         {
-            _basePage.ClickElement(By.ClassName("header__logo"));
+            _basePage.mouseAction.ClickElement(By.ClassName("header__logo"));
             return EPAMHomePage.GetInstance;
         }
 
         public EPAMSearchPage ClickFind()
         {
-            _basePage.ClickElement(By.CssSelector(".header-search__submit"));
+            _basePage.mouseAction.ClickElement(By.CssSelector(".header-search__submit"));
             return this;
         }
 

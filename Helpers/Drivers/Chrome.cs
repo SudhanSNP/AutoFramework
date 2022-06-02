@@ -3,11 +3,18 @@ using OpenQA.Selenium.Chrome;
 
 namespace Helpers.Drivers
 {
-    public class Chrome : IDriver
+    public sealed class Chrome : IDriver
     {
         private IWebDriver driver;
 
-        public Chrome()
+        private static Lazy<Chrome> DriverInstance = new Lazy<Chrome>(()=> new Chrome());
+
+        public static Chrome GetDriverInstance 
+        {
+            get { return Chrome.DriverInstance.Value; }
+        }
+
+        private Chrome()
         {
             this.driver = new ChromeDriver();
         }

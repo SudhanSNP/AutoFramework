@@ -12,7 +12,7 @@ namespace Helpers.Reports
         [OneTimeSetUp]
         public void ReportSetUp()
         {
-            Report = ExtentReportManager.ExtendReportProvider();
+            Report = ExtentReportManager.ExtendReportProvider($"{Directory.GetCurrentDirectory()}\\Reports\\{TestContext.CurrentContext.Test.Name}");
         }
 
         [SetUp]

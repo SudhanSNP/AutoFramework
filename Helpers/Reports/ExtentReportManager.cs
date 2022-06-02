@@ -36,9 +36,9 @@ namespace Helpers.Reports
             ExtentReport.AttachReporter(ReportHelper);
         }
 
-        public static ExtentReports ExtendReportProvider()
+        public static ExtentReports ExtendReportProvider(string url)
         {
-            SetReportPath($"{TestContext.CurrentContext.TestDirectory}\\Reports\\{TestContext.CurrentContext.Test.Name}_{DateTime.Now.ToString("dd_MM_yyyy_HHmmss")}.html");
+            SetReportPath(url);
             SetReportHelper();
             AttachReport();
 

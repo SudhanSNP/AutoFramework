@@ -1,11 +1,12 @@
 ﻿using Helpers.Drivers;
+using Helpers.Reports;
 using Pages;
 using Tests.BDD.Drivers;
 
 namespace Tests.BDD.Hooks
 {
     [Binding]
-    public sealed class UITestHook
+    public sealed class UITestHook : SpecflowReport
     {
         private DriverHelper driverHelper = DriverHelper.GetInstance;
 
@@ -21,7 +22,7 @@ namespace Tests.BDD.Hooks
                 .SetWebDriver(driverHelper.driver);
         }
 
-        [AfterScenario]
+        [AfterScenario("@APITests")]
         public void AfterScenario()
         {
             driverHelper.WebDriver.CloseDriver();

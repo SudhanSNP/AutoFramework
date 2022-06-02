@@ -5,31 +5,32 @@ namespace RestApiClient.Requests
 {
     public class GetRequest : RestSharpClient
     {
-        public GetRequest(string url) : base(url)
+        protected void SetRequest()
         {
             SetRestRequest(RequestType.Get);
         }
-
-        public GetRequest AddRequestHeader()
+        protected void AddRequestHeader()
         {
             restRequest.AddHeader("Accept", "application/json");
-            return this;
+        }
+        protected void AddRequestBody<T>(T modal)
+        {
+            restRequest.AddBody(modal);
         }
 
-        public GetRequest AddQueryParameter()
+        protected void AddQueryParameter()
         {
             if (queryParam != null && queryParam.Count >= 1)
             {
                 foreach (KeyValuePair<string, string> param in queryParam)
                     restRequest.AddQueryParameter(param.Key, param.Value);
             }
-            return this;
         }
 
-        public override async Task<RestResponse> SendRequest()
+        protected override async Task<RestResponse> SendRequest()
         {
-            restResponse = await GetRestResponse();
-            return await restClient.GetAsync(restRequest);
+            restResponse = await restClient.GetAsync(restRequest);
+            return restResponse;
         }
     }
 }

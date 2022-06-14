@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Tests.BDD.Features.APITests
+namespace Tests.BDD.Features.UITests
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,23 +20,22 @@ namespace Tests.BDD.Features.APITests
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("GetUsersListFeature")]
-    public partial class GetUsersListFeatureFeature
+    [NUnit.Framework.DescriptionAttribute("Feature1")]
+    public partial class Feature1Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = ((string[])(null));
         
-#line 1 "GetUsersListFeature.feature"
+#line 1 "Feature1.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/APITests", "GetUsersListFeature", "This feature is to get the list of Users from the given API\r\nThis will have the N" +
-                    "ame, Id, Email of multiple Users", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/UITests", "Feature1", "A short summary of the feature", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -75,15 +74,24 @@ namespace Tests.BDD.Features.APITests
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verify All Users Name")]
-        [NUnit.Framework.CategoryAttribute("APITests")]
-        public virtual void VerifyAllUsersName()
+        [NUnit.Framework.DescriptionAttribute("Skillset in EPAM search from excel")]
+        [NUnit.Framework.CategoryAttribute("UITests")]
+        [NUnit.Framework.TestCaseAttribute("Automation", "390", new string[] {
+                "source:dataSource.xlsx"}, Category="source:dataSource.xlsx")]
+        public virtual void SkillsetInEPAMSearchFromExcel(string skill, string record, string[] exampleTags)
         {
-            string[] tagsOfScenario = new string[] {
-                    "APITests"};
+            string[] @__tags = new string[] {
+                    "UITests"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify All Users Name", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 7
+            argumentsOfScenario.Add("Skill", skill);
+            argumentsOfScenario.Add("Record", record);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Skillset in EPAM search from excel", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -103,28 +111,11 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
+#line 7
+ testRunner.Given(string.Format("I have entered the EPAM home page {0}", skill), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
 #line 8
- testRunner.Given("The API clients are Initialized", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 9
- testRunner.When("The User names are retrieved from the Get API Request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-                TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Name"});
-                table1.AddRow(new string[] {
-                            "George"});
-                table1.AddRow(new string[] {
-                            "Janet"});
-                table1.AddRow(new string[] {
-                            "Emma"});
-                table1.AddRow(new string[] {
-                            "Eve"});
-                table1.AddRow(new string[] {
-                            "Charles"});
-                table1.AddRow(new string[] {
-                            "Tracey"});
-#line 10
- testRunner.Then("The following Names should present", ((string)(null)), table1, "Then ");
+ testRunner.And(string.Format("I have navigated to the Search panel {0}", record), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

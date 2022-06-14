@@ -43,9 +43,9 @@ namespace RestApiClient.ApiClient
             this.restResponse = new RestResponse();
         }
 
-        protected virtual async Task<RestResponse> SendRequest()
+        protected async Task<RestResponse> SendRequest()
         {
-            restResponse = new RestResponse();
+            restResponse = await restClient.ExecuteAsync(restRequest);
             return restResponse;
         }
     }

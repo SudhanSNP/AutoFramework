@@ -26,11 +26,5 @@ namespace RestApiClient.Requests
                     restRequest.AddQueryParameter(param.Key, param.Value);
             }
         }
-
-        protected override async Task<RestResponse> SendRequest()
-        {
-            restResponse = await restClient.GetAsync(restRequest);
-            return restResponse;
-        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.Remote;
 
 namespace Helpers.Drivers
 {
@@ -16,12 +17,16 @@ namespace Helpers.Drivers
 
         public Firefox()
         {
-            this.driver = new FirefoxDriver(Directory.GetCurrentDirectory());
         }
 
         public IWebDriver GetDriver()
         {
             return driver;
+        }
+
+        public void SetDriver(RemoteWebDriver driver)
+        {
+            this.driver = (driver != null) ? driver : new FirefoxDriver(Directory.GetCurrentDirectory());
         }
 
         public void MaximizeDriver()

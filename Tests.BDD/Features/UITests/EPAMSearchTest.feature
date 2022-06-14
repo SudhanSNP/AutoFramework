@@ -13,3 +13,4 @@ Examples:
 	| Skill      | Record |
 	| Automation | 387    |
 	| RPA        | 80     |
+

@@ -1,32 +1,32 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Remote;
+using OpenQA.Selenium.Edge;
 
 namespace Helpers.Drivers
 {
-    public sealed class Chrome : IDriver
+    public sealed class Edge : IDriver
     {
         private IWebDriver driver;
 
-        private static Lazy<Chrome> DriverInstance = new Lazy<Chrome>(()=> new Chrome());
+        private static Lazy<Edge> DriverInstance = new Lazy<Edge>(() => new Edge());
 
-        public static Chrome GetDriverInstance 
+        public static Edge GetDriverInstance
         {
             get { return DriverInstance.Value; }
         }
 
-        private Chrome()
+        private Edge()
         {
+        }
+        public void CloseDriver()
+        {
+            driver.Close();
+            driver.Quit();
         }
 
         public IWebDriver GetDriver()
         {
             return driver;
-        }
-
-        public void SetDriver(RemoteWebDriver driver)
-        {
-            this.driver = (driver != null) ? driver : new ChromeDriver();
         }
 
         public void MaximizeDriver()
@@ -44,10 +44,9 @@ namespace Helpers.Drivers
             driver.Navigate().GoToUrl(url);
         }
 
-        public void CloseDriver()
+        public void SetDriver(RemoteWebDriver driver)
         {
-            driver.Close();
-            driver.Quit();
+            this.driver = (driver != null) ? driver : new EdgeDriver();
         }
     }
 }

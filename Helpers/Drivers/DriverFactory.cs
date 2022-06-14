@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using Helpers.Logging;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
 namespace Helpers.Drivers
@@ -23,8 +24,11 @@ namespace Helpers.Drivers
                 case DriverType.Firefox:
                     driver = Firefox.GetDriverInstance;
                     break;
+                case DriverType.Edge:
+                    driver = Edge.GetDriverInstance;
+                    break;
                 default:
-                    Console.WriteLine("Enter the valid browser");
+                    Logger.PrintLog(new InfoLogger().LogMessage("Enter the valid browser"));
                     break;
             }
             return driver;

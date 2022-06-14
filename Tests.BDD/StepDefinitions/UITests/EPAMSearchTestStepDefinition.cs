@@ -42,5 +42,17 @@ namespace Tests.BDD.StepDefinitions.UITests
             Assert.That(Int32.Parse(resultCount.Split(' ')[0]), Is.EqualTo(count));
         }
 
+        [Given(@"I have entered the EPAM home page (.*)")]
+        public void GivenIHaveEnteredTheEPAMHomePageSkill(string skill)
+        {
+            throw new PendingStepException();
+        }
+
+        [Given(@"I have navigated to the Search panel (.*)")]
+        public void GivenIHaveNavigatedToTheSearchPanelRecord(int record)
+        {
+            throw new PendingStepException();
+        }
+
     }
 }

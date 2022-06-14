@@ -7,9 +7,14 @@ namespace Helpers.Actions
     {
         OpenQA.Selenium.Interactions.Actions Action;
 
+        public MouseActions(IWebDriver driver) : base(driver)
+        {
+        }
+
         public void ClickElement(By selector)
         {
             WaitUntilElementClickable(selector);
+            MoveToElement(selector);
             driver.FindElement(selector).Click();
             Logger.PrintLog(new InfoLogger().LogMessage($"Clicked on the element '{selector}'"));
         }

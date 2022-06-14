@@ -1,6 +1,7 @@
 ﻿using AventStack.ExtentReports;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
+using TechTalk.SpecFlow;
 
 namespace Helpers.Reports
 {
@@ -13,6 +14,7 @@ namespace Helpers.Reports
         public void ReportSetUp()
         {
             Report = ExtentReportManager.ExtendReportProvider($"{Directory.GetCurrentDirectory()}\\Reports\\{TestContext.CurrentContext.Test.Name}");
+            var info = ScenarioContext.Current.ScenarioInfo;
         }
 
         [SetUp]

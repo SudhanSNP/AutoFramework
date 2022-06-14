@@ -12,6 +12,7 @@ namespace Helpers.Reports
         [BeforeScenario]
         public void TestReport()
         {
+            var Info = FeatureContext.Current.FeatureInfo;
             Test = Report.CreateTest(ScenarioContext.Current.ScenarioInfo.Title);
             Test.Log(Status.Info, "Starting the Reporting");
         }
@@ -19,7 +20,6 @@ namespace Helpers.Reports
         [AfterScenario]
         public void ReportTearDown()
         {
-            Console.WriteLine(new ExtentReportManager().GetReportPath());
             if (ScenarioContext.Current.ScenarioExecutionStatus == ScenarioExecutionStatus.TestError)
                 Test.Fail(ScenarioContext.Current.TestError.Message);
             else if (ScenarioContext.Current.ScenarioExecutionStatus == ScenarioExecutionStatus.OK)

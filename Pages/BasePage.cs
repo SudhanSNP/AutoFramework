@@ -3,10 +3,12 @@ using OpenQA.Selenium;
 
 namespace Pages
 {
-    public sealed class BasePage : DriverActions
+    public sealed class BasePage
     {
-        public KeyBoardActions keysAction = new KeyBoardActions();
-        public MouseActions mouseAction = new MouseActions();
+        public IWebDriver driver;
+        public KeyBoardActions keysAction;
+        public MouseActions mouseAction;
+        public DriverActions driverActions;
         private static Lazy<BasePage> _basePage = new Lazy<BasePage>(() => new BasePage());
         public static BasePage GetInstance
         {
@@ -18,12 +20,14 @@ namespace Pages
 
         private BasePage()
         {
-            Console.WriteLine("--------------------------- EPAM Base Page ---------------------------");
         }
 
-        public override void SetWebDriver(IWebDriver _driver)
+        public void SetWebDriver(IWebDriver _driver)
         {
-            driver = _driver;
+            this.driver = _driver;
+            driverActions = new DriverActions(driver);
+            keysAction = new KeyBoardActions(driver);
+            mouseAction = new MouseActions(driver);
         }
     }
 }

@@ -4,7 +4,7 @@ using Pages;
 namespace Tests.UITests
 {
     [TestFixture]
-    [Parallelizable(ParallelScope.Fixtures)]
+    [Parallelizable]
     public class EPAMHomePageTest : BaseTestFixtures
     {
         [Test]
@@ -12,9 +12,15 @@ namespace Tests.UITests
         {
             EPAMHomePage epamHome = EPAMHomePage.GetInstance;
             epamHome.AcceptCookies()
-                .GetRegionOffice("Americas", out List<string> regions);
+                .GetRegionOffice("Americas", out List<string> americasRegions)
+                .ClickRegion("EMEA")
+                .GetRegionOffice("EMEA", out List<string> emeaRegions)
+                .ClickRegion("APAC")
+                .GetRegionOffice("APAC", out List<string> apacRegions);
 
-            Assert.That(regions.Count == 3);
+            Assert.That(americasRegions.Count == 4);
+            Assert.That(emeaRegions.Count == 8);
+            Assert.That(apacRegions.Count == 8);
         }
 
     }

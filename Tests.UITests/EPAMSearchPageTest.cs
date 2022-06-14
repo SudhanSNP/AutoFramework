@@ -7,12 +7,9 @@ using Pages;
 namespace Tests.UITests
 {
     [TestFixture]
-    [Parallelizable(ParallelScope.Fixtures)]
+    [Parallelizable]
     public class EPAMSearchPageTest : BaseTestFixtures
     {
-        private IWebDriver driver;
-        private IDriver WebDriver;
-
         [Test]
         public void SearchResultTest()
         {
@@ -24,8 +21,8 @@ namespace Tests.UITests
                 .ClickFind()
                 .GetResultCount(out string resultCount);
 
-            Assert.That(resultCount, Is.EqualTo("385 RESULTS FOR " + '"' + "AUTOMATION" + '"'));
-            Assert.That(Int32.Parse(resultCount.Split(' ')[0]), Is.EqualTo(385));
+            Assert.That(resultCount, Is.EqualTo("391 RESULTS FOR " + '"' + "AUTOMATION" + '"'));
+            Assert.That(Int32.Parse(resultCount.Split(' ')[0]), Is.EqualTo(391));
         }
     }
 }

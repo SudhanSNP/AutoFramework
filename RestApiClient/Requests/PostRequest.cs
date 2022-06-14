@@ -18,11 +18,6 @@ namespace RestApiClient.Requests
         {
             restRequest.AddBody(modal);
         }
-        protected override async Task<RestResponse> SendRequest()
-        {
-            restResponse = await restClient.PostAsync(restRequest);
-            return restResponse;
-        }
 
         protected HttpStatusCode GetStatusCode()
         {

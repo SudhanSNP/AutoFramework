@@ -6,15 +6,11 @@ namespace Helpers.Actions
 {
     public class DriverActions
     {
-        public static IWebDriver driver { get; set; }
+        public IWebDriver driver { get; set; }
 
-        public DriverActions()
+        public DriverActions(IWebDriver driver)
         {
-        }
-
-        public virtual void SetWebDriver(IWebDriver _driver)
-        {
-            driver = _driver;
+            this.driver = driver;
         }
 
         public string GetText(By selector)
@@ -50,7 +46,7 @@ namespace Helpers.Actions
 
         protected virtual IWebElement WaitUntilElementDisplayed(By selector)
         {
-            IWebElement element = new WebDriverWait(driver, new TimeSpan(0, 0, 5))
+            IWebElement element = new WebDriverWait(driver, new TimeSpan(0, 0, 15))
                 .Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(selector));
             Logger.PrintLog(new InfoLogger().LogMessage($"Element '{selector}' displayed"));
             return element;

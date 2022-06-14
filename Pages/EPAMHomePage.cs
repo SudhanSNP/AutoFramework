@@ -15,9 +15,17 @@ namespace Pages
             }
         }
 
+        #region Locators
+        private static readonly By SearchButton = By.XPath("//button[contains(@class, 'header-search__button')]");
+        private static readonly By AcceptAllButton = By.XPath("//button[text()='Accept All']");
+        private static readonly By Description = By.XPath("//div[@class='rollover-tiles__description']/strong");
+        private static readonly By ServicesMenu = By.XPath("//a[text()='Services']");
+        private static readonly By HowWeDoItMenu = By.XPath("//a[text()='How We Do It']");
+        #endregion
+
+        #region Actions
         private EPAMHomePage()
         {
-            Console.WriteLine("--------------------------- EPAM Home Page ---------------------------");
             _basePage = BasePage.GetInstance;
         }
 
@@ -25,18 +33,18 @@ namespace Pages
 
         public EPAMHomePage ClickSearch()
         {
-            _basePage.mouseAction.ClickElement(By.XPath("//button[contains(@class, 'header-search__button')]"));
+            _basePage.mouseAction.ClickElement(SearchButton);
             return this;
         }
         public EPAMHomePage AcceptCookies()
         {
-            _basePage.mouseAction.ClickElement(By.XPath("//button[text()='Accept All']"));
+            _basePage.mouseAction.ClickElement(AcceptAllButton);
             return this;
         }
 
         public EPAMHomePage GetPresenceOfSearch(out bool isPresent)
         {
-            isPresent = _basePage.GetPresenceOfElement(By.XPath("//button[contains(@class, 'header-search__button')]"));
+            isPresent = _basePage.driverActions.GetPresenceOfElement(SearchButton);
             return this;
         }
 
@@ -54,8 +62,27 @@ namespace Pages
 
         public EPAMHomePage GetRegionOffice(string Region, out List<string> offices)
         {
-            _basePage.GetAttributes(By.XPath($"//a[text()='{Region}']/following::div[@class='owl-item active']/div"), "data-country", out offices);
+            _basePage.driverActions.GetAttributes(By.XPath($"//a[text()='{Region}']/following::div[@class='owl-item active']/div"), "data-country", out offices);
             return this;
         }
+
+        public EPAMHomePage GetDescription(out List<string> descriptions)
+        {
+            _basePage.driverActions.GetText(Description, out descriptions);
+            return this;
+        }
+
+        public EPAMServicesPage ClickEpamServices()
+        {
+            _basePage.mouseAction.ClickElement(ServicesMenu);
+            return EPAMServicesPage.GetInstance;
+        }
+
+        public EPAMHowWeDoItPage ClickEpamHowWeDoIt()
+        {
+            _basePage.mouseAction.ClickElement(HowWeDoItMenu);
+            return EPAMHowWeDoItPage.GetInstance;
+        }
+        #endregion
     }
 }

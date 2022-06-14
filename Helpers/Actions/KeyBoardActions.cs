@@ -5,6 +5,10 @@ namespace Helpers.Actions
 {
     public class KeyBoardActions : DriverActions
     {
+        public KeyBoardActions(IWebDriver driver) : base(driver)
+        {
+        }
+
         public void SendText(By selector, string text)
         {
             WaitUntilElementDisplayed(selector).SendKeys(text);

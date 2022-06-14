@@ -6,7 +6,7 @@ using Tests.BDD.Drivers;
 namespace Tests.BDD.Hooks
 {
     [Binding]
-    public sealed class UITestHook : SpecflowReport
+    public sealed class UITestHook : NUnitReport
     {
         private DriverHelper driverHelper = DriverHelper.GetInstance;
 
@@ -22,7 +22,7 @@ namespace Tests.BDD.Hooks
                 .SetWebDriver(driverHelper.driver);
         }
 
-        [AfterScenario("@APITests")]
+        [AfterScenario("@UITests")]
         public void AfterScenario()
         {
             driverHelper.WebDriver.CloseDriver();

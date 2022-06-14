@@ -5,7 +5,7 @@ namespace Helpers.Logging
     public class InfoLogger : Logger
     {
         Logs log = InfoMessage;
-        static StringBuilder Info = new StringBuilder($"{LoggerLevel.INFO}: ");
+        static string Info = new String($"{LoggerLevel.INFO}: ");
 
         public override string LogMessage(string message)
         {
@@ -14,7 +14,7 @@ namespace Helpers.Logging
 
         public static string InfoMessage(string message)
         {
-            return Info.Append(message).ToString();
+            return (Info + message);
         }
     }
 }

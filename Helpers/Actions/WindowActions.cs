@@ -4,6 +4,10 @@ namespace Helpers.Actions
 {
     public class WindowActions : DriverActions
     {
+        public WindowActions(IWebDriver driver) : base(driver)
+        {
+        }
+
         public string CurrentWindow()
         {
             return driver.CurrentWindowHandle;
